@@ -77,7 +77,10 @@ SelectPCA
                 console.log("2.0 database");
             }
             catch(ex){
-                alert(""+ex);
+                //alert(""+ex);
+                this.db = window.openDatabase("cicadaStore", "1.0", "cicadaStore", 2*1024 * 1024);
+//                alert("请返回商城列表在试一次");
+                $rootScope.loading(false);
             }
 
             if(!addressDataBase ||  addressDataBase.version != VERSION.ADDRESS_SOURCE_VERSION ){
