@@ -63,21 +63,22 @@
 
             <div class="clearfix mall-icon">
                 <div class=" float_two" ng-repeat="post in posts">
-                    <a href="javascript:void(0);" on-tap="goDetail(post);"  class="block">
+                    <a href="javascript:void(0);"   on-tap="goDetail(post);"  class="block mall-list-pd">
                         <div class="mail-base">
 
-                            <div class="text-center">
-                                <img    ng-src="{{post.mediumImage}}"  width="100"  height="60"/>
+                            <div>
+                                <img    ng-src="{{post.mediumImage}}"  class="mall-list-img"  />
+                                <!--<img    src="../cicadaStoreNormal/img/100pic.png"  class="mall-list-img"  />-->
                             </div>
 
-                            <div class="text-center mail-base-name text-ellipsis">
+                            <div class="text-left mail-base-name text-ellipsis">
                                 <span class="mail-name ">{{post.productionName}}</span>
                             </div>
                             <div>
                                 <!--<div class="ib">-->
                                     <!--<i class="ib point-expired"></i><span class="mail-point color-gary">{{post.point}}</span>-->
                                 <!--</div>-->
-                                <div class="text-center">
+                                <div class="text-left">
                                     <div class="mail-icon-setting">
                                         <span class="ib point t2"></span><span class="mail-point">{{post.credit}}</span>
                                     </div>
@@ -91,20 +92,44 @@
 
                 <!--期待-->
                 <div class=" float_two" >
-                    <a href="javascript:void(0);"   class="block text-center">
-                        <div class="shop-main">
-                            <i class="ib shop"></i>
+
+
+                    <a href="javascript:void(0);"   on-tap="goDetail(post);"  class="block mall-list-pd">
+                        <div class="mail-base pos-rel">
+                            <div class="shop-main">
+                                <i class="ib shop"></i>
+                                <div>
+                                    <span style="color: #d1d1d1">敬请期待</span>
+                                </div>
+                            </div>
                             <div>
-                                <span style="color: #d1d1d1">敬请期待</span>
+                                <img    src="img/white.png"  class="mall-list-img"  />
+                            </div>
+
+                            <div class="text-left mail-base-name text-ellipsis">
+                                <span class="mail-name ">&nbsp;</span>
+                            </div>
+                            <div>
+
+                                <div class="text-left">
+                                    <div class="mail-icon-setting">
+                                       <span class="mail-point">&nbsp;</span>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-
                     </a>
+
                 </div>
 
             </div>
 
         </section>
+
+       <section class="footer-info text-center" ng-show="$root.IS_IOS">
+           <span class="ib declare">活动由知了提供，与设备生产商Apple Inc. 公司无关</span>
+       </section>
 
 
     </ion-content>

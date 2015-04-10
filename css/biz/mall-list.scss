@@ -39,18 +39,15 @@
   border-top: 1px solid #e8e8e8;
 
   a{
-    padding-top: rem(64px);
-    padding-bottom: rem(41px);
-    border-bottom: 1px solid #e8e8e8;
 
-    //最小高度
-    min-height: 178px;
+    border-bottom: 1px solid #e8e8e8;
     position: relative;
 
   }
   .float_two:nth-child(2n) a{
     border-left: 1px solid #e8e8e8;
   }
+
 
 
   .mail-name{
@@ -64,15 +61,34 @@
   .mail-base{
     display: block;
     text-align: left;
+
+    //最小高度
+    min-height: 128px;
+
+    //固定高度hack处理
+//    top: 12px;
+//    position: relative;
   }
 
   .mail-base-name{
-    padding: 0 rem(20px);
   }
   .mail-icon-setting{
    text-align: left;
     width: 100px;
     display: inline-block;
+
+    margin-top: 2px;
+  }
+
+  //商城主页图片
+  .mall-list-img{
+    width: 100%;
+    max-width: rem(319px);
+  }
+
+  .mall-list-pd{
+    padding: rem(30px);
+    padding-bottom: rem(14px);
   }
 
 }
@@ -83,7 +99,7 @@
   //  position: relative;
   //  top: 2px;
   //  vertical-align: middle;
-  margin-left: 7.5px;
+  margin-left: rem(24px);
 }
 .detail{
   background: #f6f6f6;
@@ -95,7 +111,9 @@
   top: 50%;
   margin-top: -21px;
   width: 100%;
+  text-align: center;
 }
+
 
 
 

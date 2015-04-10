@@ -22,26 +22,23 @@
             </div>
         </div>
 
-
-
         <!-- 下拉刷新 -->
-        <ion-refresher  pulling-text="" on-refresh="refresh()"  >  </ion-refresher>
+        <ion-refresher  pulling-text="" on-refresh="refresh()"   spinner="ios">  </ion-refresher>
 
-        <style type="text/css">
-            .my-item {
-                left: 0;
-                right: 0;
-            }
-        </style>
+        <!--<style type="text/css">-->
+            <!--.my-item {-->
+                <!--left: 0;-->
+                <!--right: 0;-->
+        <!--}-->
+        <!--</style>-->
         <ion-list class="exchangeList">
-
-            <!--<a class="item my-item item-thumbnail-left item-icon-right"  ng-click="getDetail(post)" collection-repeat="post in posts" collection-item-width="'100%'"  collection-item-height="'100px'"  >-->
+            <!--<ion-item class="item  item-thumbnail-left item-icon-right"  ng-click="getDetail(post)" collection-repeat="post in posts"  >-->
             <ion-item  class="item-thumbnail-left item-icon-right"   ng-click="getDetail(post)"  ng-repeat="post in posts">
                 <img  ng-src="{{
                 post.image}}"  class="full-image"      />
                 <h2 class="exchangeName">{{post.productionName}}</h2>
                 <div>
-                        <span class="ib point-expired t2" ></span><span class="mail-point color-gray-light">{{post.credit}}</span>
+                    <span class="ib point-expired t2" ></span><span class="mail-point color-gray-light">{{post.credit}}</span>
                 </div>
                 <div>
                     <span class="ib exchangeStatus "  ng-class="{'color-og':post.status=='0','color-gray-light' : post.status == '1'  }">{{post.status |  exchangeStatus : post.productionType }}</span>
@@ -50,10 +47,7 @@
                 <i class="  icon ion-chevron-right  f18  color-gray" ng-hide="post.isSubmit"></i>
                 <i class=" ion-loading-d icon f18" ng-show="post.isSubmit"></i>
             </ion-item>
-                <!--</a>-->
         </ion-list>
-
-
 
         <!-- 上拉加载 -->
         <ion-infinite-scroll  ng-if="isMore"  icon="ion-ios7-reloading"   spinner="lines"   on-infinite="loadMore()" distance="1%" >  </ion-infinite-scroll>

@@ -7,12 +7,12 @@ var PointMall = angular.module('pointMall', ['ionic','selectPCA']);
 PointMall.config(function ($ionicConfigProvider) {
     //android 平台下开启原生滚动模式  ionic1.0rc 版特性
 //    if(!ionic.Platform.isIOS())$ionicConfigProvider.scrolling.jsScrolling(false);
-
     //默认策略是 back策略
     //极限缓存策略
 //    $ionicConfigProvider.views.forwardCache(true);
 
-    if(!ionic.Platform.isIOS()){
+    //android 关闭动画
+    if(ionic.Platform.isAndroid()){
         $ionicConfigProvider.views.transition('none');
     }
 
@@ -33,7 +33,6 @@ PointMall.run(function ($ionicPlatform) {
 
     .config(function ($stateProvider, $urlRouterProvider,VERSION) {
         $stateProvider
-
             .state("mall", {
                 url: "/mall",
                 abstract: true,
@@ -50,7 +49,6 @@ PointMall.run(function ($ionicPlatform) {
                 url: "/detail",
                 templateUrl: "tpls/mall-detail.html?v="+VERSION.URL_VERSION,
                 controller: "MallDetailCtrl"
-
             })
 
 //            .state("mall.exchange", {
@@ -134,7 +132,6 @@ PointMall.run(function ($ionicPlatform) {
                 }
             })
 
-
             //选择省市区
             .state("mall.select", {
                 url: "/select",
@@ -169,7 +166,6 @@ PointMall.run(function ($ionicPlatform) {
             })
         //默认路径
         $urlRouterProvider.otherwise('/mall/list');
-
     })
 
     //设置基本loading
@@ -188,8 +184,8 @@ PointMall.run(function ($ionicPlatform) {
     .constant('SERVER', {
         url: {
 //            mall: "http://172.16.130.218:8086/credit",
-//            mall: "http://10.10.68.11:10000/credit",
-            mall:"http://imzhiliao.com:10000/credit",
+            mall: "http://10.10.68.11:10000/credit",
+//            mall:"http://imzhiliao.com:10000/credit",
 //            mall: "./data" ,
 //            mall: "/credit",
             resource : "./data"
@@ -217,7 +213,7 @@ PointMall.run(function ($ionicPlatform) {
     //版本控制
     .constant("VERSION",{
 
-        URL_VERSION : "6.4",
+        URL_VERSION : "6.7",
         ADDRESS_SOURCE_VERSION : "2.2"
 
     });

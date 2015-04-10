@@ -116,7 +116,7 @@ PointMall
                     defer.resolve(res);
                 }).error(function(error){
                     defer.reject(error);
-                });
+                },{timeout : 18000});
 
                 return defer.promise;
             },

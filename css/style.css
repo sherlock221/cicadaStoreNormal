@@ -121,7 +121,7 @@ a {
 
 /* 文字居中*/
 .text-center {
-  text-align: center; }
+  text-align: center !important; }
 
 /** 针对webkit 多行文本显示...  **/
 .multi-ellipsis {
@@ -172,6 +172,14 @@ a {
   bottom: 0;
   right: 0;
   z-index: -1; }
+
+.footer-info {
+  background: #f6f6f6; }
+  .footer-info .declare {
+    font-size: 10px;
+    margin: 15px 0;
+    display: inline-block;
+    color: #c9c8c8; }
 
 /**
 * sherlock221b
@@ -328,10 +336,7 @@ form .form-text {
   text-align: center;
   border-top: 1px solid #e8e8e8; }
   .mall-icon a {
-    padding-top: 32px;
-    padding-bottom: 20.5px;
     border-bottom: 1px solid #e8e8e8;
-    min-height: 178px;
     position: relative; }
   .mall-icon .float_two:nth-child(2n) a {
     border-left: 1px solid #e8e8e8; }
@@ -343,19 +348,25 @@ form .form-text {
     margin-bottom: 5px; }
   .mall-icon .mail-base {
     display: block;
-    text-align: left; }
-  .mall-icon .mail-base-name {
-    padding: 0 10px; }
+    text-align: left;
+    min-height: 128px; }
   .mall-icon .mail-icon-setting {
     text-align: left;
     width: 100px;
-    display: inline-block; }
+    display: inline-block;
+    margin-top: 2px; }
+  .mall-icon .mall-list-img {
+    width: 100%;
+    max-width: 159.5px; }
+  .mall-icon .mall-list-pd {
+    padding: 15px;
+    padding-bottom: 7px; }
 
 .mail-point {
   font-size: 16px;
   color: #f69e47;
   display: inline-block;
-  margin-left: 7.5px; }
+  margin-left: 12px; }
 
 .detail {
   background: #f6f6f6; }
@@ -364,7 +375,8 @@ form .form-text {
   position: absolute;
   top: 50%;
   margin-top: -21px;
-  width: 100%; }
+  width: 100%;
+  text-align: center; }
 
 /** 滑块的hack **/
 .slider-pager {

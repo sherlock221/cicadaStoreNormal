@@ -27,11 +27,18 @@ PointMall.controller("MallCtrl",["$state", "$stateParams", "$location", "$scope"
     console.log($rootScope.token);
 
 
+
+
+
     //全局机型
     $rootScope.MOBILE = {
         version : Util.getParam("version", paramsUrl) || "",
         clientType : Util.getParam("clientType", paramsUrl) || ""
     }
+
+
+    //是否ios
+    $rootScope.IS_IOS = ionic.Platform.isIOS();
 
 
     console.log($rootScope.MOBILE);
@@ -73,7 +80,7 @@ PointMall.controller("MallCtrl",["$state", "$stateParams", "$location", "$scope"
 
     //计算banner宽高比
     var screenWidth = document.body.clientWidth;
-    var bannerScale = 750 / 340;
+    var bannerScale = 750 / 301;
     $scope.bannerHeight = screenWidth / bannerScale;
 
 

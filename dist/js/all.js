@@ -522,11 +522,18 @@ PointMall.controller("MallCtrl",["$state", "$stateParams", "$location", "$scope"
     console.log($rootScope.token);
 
 
+
+
+
     //全局机型
     $rootScope.MOBILE = {
         version : Util.getParam("version", paramsUrl) || "",
         clientType : Util.getParam("clientType", paramsUrl) || ""
     }
+
+
+    //是否ios
+    $rootScope.IS_IOS = ionic.Platform.isIOS();
 
 
     console.log($rootScope.MOBILE);
@@ -985,7 +992,7 @@ PointMall
                     defer.resolve(res);
                 }).error(function(error){
                     defer.reject(error);
-                });
+                },{timeout : 18000});
 
                 return defer.promise;
             },
