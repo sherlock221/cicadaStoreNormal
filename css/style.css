@@ -355,15 +355,14 @@ form .form-text {
   .mall-icon .mail-base {
     display: block;
     text-align: left;
-    min-height: 128px; }
+    min-height: 140px; }
   .mall-icon .mail-icon-setting {
     text-align: left;
     width: 100px;
     display: inline-block;
     margin-top: 2px; }
   .mall-icon .mall-list-img {
-    width: 100%;
-    max-width: 159.5px; }
+    width: 150px; }
   .mall-icon .mall-list-pd {
     padding: 15px;
     padding-bottom: 7px; }
@@ -391,6 +390,13 @@ form .form-text {
 .slider-pager-page .ion-record {
   font-size: 10px; }
 
+/**320 - 375 **/
+@media screen and (max-width: 374px) {
+  .mall-icon .mall-list-img {
+    width: 137px; } }
+@media screen and (max-width: 320px) {
+  .mall-icon .mall-list-img {
+    width: 130px; } }
 /**
 * sherlock221b
 */

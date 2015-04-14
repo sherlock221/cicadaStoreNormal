@@ -61,9 +61,8 @@
   .mail-base{
     display: block;
     text-align: left;
-
     //最小高度
-    min-height: 128px;
+    min-height: 140px;
 
     //固定高度hack处理
 //    top: 12px;
@@ -82,8 +81,7 @@
 
   //商城主页图片
   .mall-list-img{
-    width: 100%;
-    max-width: rem(319px);
+    width: rem(300px);
   }
 
   .mall-list-pd{
@@ -131,3 +129,20 @@
     font-size: 10px;
   }
 }
+
+
+
+/**320 - 375 **/
+@media screen and (max-width: 374px) {
+  .mall-icon .mall-list-img{
+    width: rem(274px);
+  }
+}
+
+//4s 320
+@media screen and (max-width: 320px) {
+  .mall-icon .mall-list-img{
+    width: rem(260px);
+  }
+}
+
