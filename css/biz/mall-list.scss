@@ -69,8 +69,7 @@
 //    position: relative;
   }
 
-  .mail-base-name{
-  }
+
   .mail-icon-setting{
    text-align: left;
     width: 100px;
@@ -130,13 +129,21 @@
   }
 }
 
+.mail-base-pd{
 
+}
 
 /**320 - 375 **/
 @media screen and (max-width: 374px) {
-  .mall-icon .mall-list-img{
-    width: rem(274px);
+  .mall-icon {
+    .mall-list-img {
+      width: rem(274px);
+    }
+    .mail-base-name{
+      padding-left: 0px;
+    }
   }
+
 }
 
 //4s 320
@@ -144,5 +151,10 @@
   .mall-icon .mall-list-img{
     width: rem(260px);
   }
+
+  .mail-base-name{
+    padding-left:0;
+  }
 }
+
 
