@@ -4,20 +4,129 @@
 */
 
 
+//详情全局
+.detail{
+  background: #fff;
+}
+
+
+//详情页面padding
+@mixin detailPadding{
+  padding-left: rem(20px);
+  padding-right: rem(20px);
+}
+
+
+
+
+//详情头部
+.detail-header{
+
+  @include detailPadding;
+
+  margin-top: rem(76px);
+  margin-bottom: rem(32px);
+
+  .tip-info{
+    margin-top: rem(23px);
+    //hack 中文大括号
+    margin-left: -6px;
+  }
+
+  .time-gray{
+    color: #a1a1a1;
+    font-size: rem(30px);
+  }
+
+  h3{
+    font-size: rem(34px);
+    margin-bottom: 0;
+    margin-right: rem(24px);
+
+    line-height: 0;
+  }
+
+  span{
+
+  }
+
+}
+
+
+
+/** 商品列表 **/
+.product-list{
+
+   color: #a1a1a1;
+
+   li{
+     margin-bottom: rem(20px);
+     .product-label{
+
+     }
+
+     .product-content{
+       padding-left: rem(12px);
+     }
+   }
+
+}
+
+
+/** 兑换流程 **/
+.product-process{
+  color: #a1a1a1;
+  //margin-top: rem(104px);
+
+  li{
+    margin-bottom: rem(20px);
+  }
+}
+
+
+/** 标签 **/
+
+
+//至尊
+.tip-supreme{
+  font-size: rem(20px);
+  color: #f1705d;
+  border-radius: 3px;
+  border:  1px solid #f1705d;
+  padding: 0 rem(4px);
+  font-weight: bold;
+
+  line-height: 16px;
+}
+
+.tip-info{
+  font-weight: bold;
+  color: #e79051;
+  font-size: rem(28px);
+  margin: 0;
+}
+
+/** 标签 **/
+
+
 
 //详情部分
 .detail-body{
 
 
-  margin-top: rem(44px);
-  padding-left: rem(30px);
-  padding-right: rem(28px);
+  @include detailPadding;
 
-  padding-bottom: rem(100px);
+  margin-bottom: rem(20px);
+  margin-top: rem(34px);
 
-  .tips{
-    margin-bottom: rem(223px);
+
+  //商品标题
+  .product-title{
+    font-size: rem(30px);
+    color: #a1a1a1;
   }
+
+
 
   ul.list{
     li{
@@ -45,28 +154,20 @@
 
 
 
-.detail-header{
-  padding: rem(25px) 0;
-  padding-left: rem(30px);
-  padding-right: rem(28px);
-  background: #ffffff;
+//实物
+.product-material{
 
-  h3{
-    font-size: rem(34px);
-    margin-bottom: 5px;
-  }
-
-  span{
-  }
 }
+
+
 
 .detail-change{
   padding-left: rem(30px);
   padding-right: rem(28px);
 
   background: #ffffff;
-  padding: rem(21px);
-
+  padding: rem(16px);
+  border: 1px solid #d1d1d1;
   .color-og{
     font-size: 18px;
   }

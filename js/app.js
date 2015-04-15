@@ -51,6 +51,8 @@ PointMall.run(function ($ionicPlatform) {
                 controller: "MallDetailCtrl"
             })
 
+
+
 //            .state("mall.exchange", {
 //                url: "/exchange",
 //                abstract: true
@@ -65,6 +67,7 @@ PointMall.run(function ($ionicPlatform) {
                         templateUrl: "tpls/exchange/exchange-list.html?v="+VERSION.URL_VERSION
 //                        controller: "MallExchangeCtrl"
                     }
+
                 }
             })
 

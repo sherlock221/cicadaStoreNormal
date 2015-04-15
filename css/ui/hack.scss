@@ -8,3 +8,18 @@
 .popup-body{
   overflow: auto;
 }
+
+
+//gird布局
+.row{
+  padding: 0;
+
+}
+.row + .row {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.col{
+  padding: 0;
+}

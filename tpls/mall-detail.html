@@ -14,59 +14,60 @@
             </img-lazy>
         </div>
 
+
+
         <div class="detail-header">
-            <h3>{{post.productionName}} {{post.type}}</h3>
-                <span class="color-og">
-                    兑换截止日期:&emsp;{{post.comment.time}}
-                </span>
-        </div>
-        <section class="detail-body">
-            <div>
 
-
-                <ul class="list">
-                    <li>
-                        <label>使用范围:</label>
-                        <span> {{post.comment.range}}</span>
-                    </li>
-                    <li>
-                        <label>到账时间:</label>
-                        <span> {{post.comment.arrtive}}</span>
-                    </li>
-                    <li>
-                        <label class="" style=" float: left;">兑换流程:</label>
-                        <span class="detail-wrap-text" ng-bind-html="post.comment.exchange"></span>
-                    </li>
-
-                    <li>
-                        <label class="" style=" float: left;">商品详情:</label>
-                        <span class="detail-wrap-text" ng-bind-html="post.comment.desc"></span>
-                    </li>
-                </ul>
+            <!-- 商品标题 -->
+            <div class="row row-center mb15">
+                <h3 class="">{{post.productionName}}</h3>
+                <span class="tip-supreme">至尊兑换</span>
             </div>
 
-            <!--<div class="tips">-->
-            <!--<span class="color-og">-->
-                <!--知了节省您的精力！由我们实时服务为您充值，您只需在收到短信提醒后动动手指头查看兑换状态即可。-->
-            <!--</span>-->
-            <!--</div>-->
+            <!-- 商品价格 -->
+            <div class="row row-center">
+                <i class="point"></i>
+                <span class="color-og f15 ml8">{{post.credit}}</span>
+            </div>
+
+            <!-- 日期 -->
+            <div class="row row-center mt8">
+                <i class="time"></i>
+                <span class="time-gray ml8">{{post.comment.time}}</span>
+            </div>
+
+            <div>
+                <h5 class="tip-info">【知了至尊兑换】将由小知了亲自为您发货哦</h5>
+            </div>
+
+        </div>
+
+        <section class="detail-body">
+
+                <!-- 邮寄类 -->
+                <div ng-if="post.productionType == 1" ng-include="'./tpls/product/product-material.html'"></div>
+                <!-- 电子卷 -->
+                <div ng-if="post.productionType == 3" ng-include="'./tpls/product/product-card.html'"></div>
+                <!-- 话费 -->
+                <div ng-if="post.productionType == 4" ng-include="'./tpls/product/product-card.html'"></div>
 
         </section>
 
+
+
     </ion-content>
     <div class="detail-change clearfix" style="position: fixed; bottom: 0px; width: 100%;">
-        <div class="ib">
-            <span class="color-og pointMs ib">
-                <i class="ib point t2" style="margin-right: 8px;"></i>
-                <span class="ib ">{{post.credit}}</span>
-            </span>
-        </div>
 
-        <div class="pull-right">
+
+        <section class="row row-center">
+            <div class="row row-center">
+                <i class="ib point  "></i>
+                <span class="color-og ml10">{{post.credit}}</span>
+            </div>
+            <div class="col"></div>
             <button class="button button-energized ca-sm" ng-click="goPage()"  ng-disabled="notExchange">
                 {{isExchangeMsg}}
             </button>
-        </div>
-
+        </section>
     </div>
 </ion-view>

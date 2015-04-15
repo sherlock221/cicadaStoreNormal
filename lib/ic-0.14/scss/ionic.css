@@ -7413,7 +7413,8 @@ a.button {
 
 .row + .row {
   margin-top: -5px;
-  padding-top: 0; }
+  padding-top: 0;
+}
 
 .col {
   -webkit-box-flex: 1;
