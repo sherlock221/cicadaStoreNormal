@@ -6,6 +6,9 @@
         <h1 class="title">商品详情</h1>
     </div>
 
+
+
+
     <!--内容区-->
     <ion-content class="has-header detail">
         <div>
@@ -15,29 +18,28 @@
         </div>
 
 
-
         <div class="detail-header">
 
             <!-- 商品标题 -->
-            <div class="row row-center mb15">
+            <div class="row row-center mb15 " >
                 <h3 class="">{{post.productionName}}</h3>
-                <span class="tip-supreme">至尊兑换</span>
+                <div class="tip-supreme" ng-if="post.comment.label && post.comment.label.name">{{post.comment.label.name}}</div>
             </div>
 
             <!-- 商品价格 -->
             <div class="row row-center">
-                <i class="point"></i>
-                <span class="color-og f15 ml8">{{post.credit}}</span>
+                <div class="point"></div>
+                <div class="color-og f15 ml8">{{post.credit}}</div>
             </div>
 
             <!-- 日期 -->
             <div class="row row-center mt8">
-                <i class="time"></i>
-                <span class="time-gray ml8">{{post.comment.time}}</span>
+                <div class="time"></div>
+                <div class="time-gray ml8">{{post.comment.time}}</div>
             </div>
 
-            <div>
-                <h5 class="tip-info">【知了至尊兑换】将由小知了亲自为您发货哦</h5>
+            <div class="row"  ng-if="post.comment.label && post.comment.label.value">
+                <h5 class="tip-info">{{post.comment.label.value}}</h5>
             </div>
 
         </div>
@@ -47,24 +49,24 @@
                 <!-- 邮寄类 -->
                 <div ng-if="post.productionType == 1" ng-include="'./tpls/product/product-material.html'"></div>
                 <!-- 电子卷 -->
-                <div ng-if="post.productionType == 3" ng-include="'./tpls/product/product-card.html'"></div>
+                <div ng-if="post.productionType == 3" ng-include="'./tpls/product/product-fare.html'"></div>
                 <!-- 话费 -->
                 <div ng-if="post.productionType == 4" ng-include="'./tpls/product/product-card.html'"></div>
 
         </section>
 
 
-
     </ion-content>
-    <div class="detail-change clearfix" style="position: fixed; bottom: 0px; width: 100%;">
+    <div class="detail-change clearfix" style="position: fixed; bottom: 0px; left : 0px;width: 100%;">
 
 
         <section class="row row-center">
-            <div class="row row-center">
-                <i class="ib point  "></i>
-                <span class="color-og ml10">{{post.credit}}</span>
+            <div class="col">
+                <div class="row row-center">
+                    <div class="point"></div>
+                    <div class="color-og ml10">{{post.credit}}</div>
+                </div>
             </div>
-            <div class="col"></div>
             <button class="button button-energized ca-sm" ng-click="goPage()"  ng-disabled="notExchange">
                 {{isExchangeMsg}}
             </button>

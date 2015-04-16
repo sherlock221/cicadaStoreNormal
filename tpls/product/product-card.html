@@ -1,20 +1,65 @@
-<ul class="list">
-    <li>
-        <label class="" style=" float: left;">商品详情:</label>
-        <span class="detail-wrap-text" ng-bind-html="post.comment.desc"></span>
-    </li>
+<h5 class="product-title">商品信息</h5>
 
-    <li>
-        <label>使用范围:</label>
-        <span> {{post.comment.range}}</span>
-    </li>
-    <li>
-        <label>到账时间:</label>
-        <span> {{post.comment.arrtive}}</span>
-    </li>
-    <li>
-        <label class="" style=" float: left;">兑换流程:</label>
-        <span class="detail-wrap-text" ng-bind-html="post.comment.exchange"></span>
+<!-- 商品介绍处 -->
+<ul class="product-list">
+
+    <li class="row " ng-repeat="pInfo in post.comment.productInfo">
+        <div class="product-label">
+            {{pInfo.key}}
+        </div>
+        <div class="col product-content" ng-bind-html="pInfo.value">
+        </div>
     </li>
 
 </ul>
+
+<!-- 商品文字描述 -->
+<div class="product-desc">
+    {{post.comment.productDesc}}
+</div>
+
+
+<!-- 商品展示图片处 -->
+<div class="product-img" ng-if="post.comment.productImage">
+    <div ng-repeat="pImage in post.comment.productImage ">
+        <img  ng-src="{{pImage}}"  class="full-image" />
+    </div>
+</div>
+
+
+<h5 class="product-title " style="margin-top: 50px">兑换流程</h5>
+
+<!-- 兑换流程 -->
+<ul class="product-process">
+    <li class="row" ng-repeat="ex in post.comment.exchange">
+        <span>
+            {{$index+1}}.&nbsp;
+        </span>
+        <div class="col product-content">
+            {{ex}}
+        </div>
+    </li>
+</ul>
+
+<h5 class="product-title " style="margin-top: 50px">使用流程</h5>
+
+
+
+
+<!-- 使用流程 -->
+<ul class="product-process">
+    <li class="row" ng-repeat="ex in post.comment.usechange">
+        <span>
+            {{$index+1}}.&nbsp;
+        </span>
+        <div class="col product-content">
+            {{ex}}
+        </div>
+    </li>
+</ul>
+
+
+
+<div class="product-detail-bottom">
+
+</div>

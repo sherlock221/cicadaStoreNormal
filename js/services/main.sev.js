@@ -19,9 +19,7 @@ PointMall
                 });
 
                 return defer.promise;
-
             },
-
 
             //获得商品详情
             getProductDetail : function(productionId){

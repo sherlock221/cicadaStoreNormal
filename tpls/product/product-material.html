@@ -1,86 +1,47 @@
 <h5 class="product-title">商品信息</h5>
 
-
-
-
-
-
-<!--<ul class="list">-->
-    <!--<li>-->
-        <!--<label class="" style=" float: left;">商品详情:</label>-->
-        <!--<span class="detail-wrap-text" ng-bind-html="post.comment.desc"></span>-->
-    <!--</li>-->
-
-    <!--<li>-->
-        <!--<label>使用范围:</label>-->
-        <!--<span> {{post.comment.range}}</span>-->
-    <!--</li>-->
-
-    <!--<li>-->
-        <!--<label>到账时间:</label>-->
-        <!--<span> {{post.comment.arrtive}}</span>-->
-    <!--</li>-->
-
-    <!--<li>-->
-        <!--<label class="" style=" float: left;">兑换流程:</label>-->
-        <!--<span class="detail-wrap-text" ng-bind-html="post.comment.exchange"></span>-->
-    <!--</li>-->
-<!--</ul>-->
-
-
-
 <!-- 商品介绍处 -->
 <ul class="product-list">
 
-    <li class="row">
-        <span class="product-label">
-            型号:
-        </span>
-        <div class="col product-content">
-            iPhone 6iPhone 6iPhone 6iPhone 6iPhone 6iPhone 6iPhone 6iPhone 6iPhone 6iPhone 6
-        </div>
-    </li>
 
-    <li class="row">
-        <span class="product-label">
-            型号:
-        </span>
-        <div class="col product-content">
-            iPhone 6
+    <li class="row " ng-repeat="pInfo in post.comment.productInfo">
+        <div class="product-label">
+            {{pInfo.key}}
+        </div>
+        <div class="col product-content" ng-bind-html="pInfo.value">
         </div>
     </li>
 
 </ul>
 
-
-<!-- 商品展示图片处 -->
-<div class="product-img">
-        <img  src="img/product/xiaomi.png"  class="full-image" />
-        <img  src="img/product/xiaomi.png"  class="full-image" />
+<!-- 商品文字描述 -->
+<div class="product-desc">
+    {{post.comment.productDesc}}
 </div>
 
 
+<!-- 商品展示图片处 -->
+<div class="product-img">
+        <div ng-repeat="pImage in post.comment.productImage ">
+            <img  ng-src="{{pImage}}"  class="full-image" />
+        </div>
+</div>
 
 
 <h5 class="product-title " style="margin-top: 50px">兑换流程</h5>
 
 <!-- 兑换流程 -->
 <ul class="product-process">
-    <li class="row">
+    <li class="row" ng-repeat="ex in post.comment.exchange">
         <span>
-            1.
+            {{$index+1}}.&nbsp;
         </span>
         <div class="col product-content">
-            点击“立即兑换”>提交收货信息>点击“确定”完成兑换；
+            {{ex}}
         </div>
     </li>
-    <li class="row">
-        <span>
-            2.
-        </span>
-        <div class="col product-content">
-            点击“立即兑换”>提交收货信息>点击“确定”完成兑换；
-        </div>
-    </li>
-
 </ul>
+
+<div class="product-detail-bottom">
+
+</div>

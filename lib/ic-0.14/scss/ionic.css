@@ -7594,7 +7594,8 @@ a.button {
   -moz-flex: 0 0 90%;
   -ms-flex: 0 0 90%;
   flex: 0 0 90%;
-  max-width: 90%; }
+  max-width: 90%;
+}
 
 /* Responsive Grid Classes */
 /* Adding a class of responsive-X to a row */

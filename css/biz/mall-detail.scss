@@ -5,8 +5,12 @@
 
 
 //详情全局
-.detail{
+.detail {
   background: #fff;
+
+  //详情底部滚动
+  margin-bottom: rem(100px);
+
 }
 
 
@@ -16,7 +20,10 @@
   padding-right: rem(20px);
 }
 
-
+@mixin detailSupplement{
+  margin-left: rem(-20px);
+  margin-right: rem(-20px);
+}
 
 
 //详情头部
@@ -53,7 +60,6 @@
 }
 
 
-
 /** 商品列表 **/
 .product-list{
 
@@ -83,6 +89,23 @@
   }
 }
 
+//商品描述
+.product-desc{
+  color: #a1a1a1;
+  margin-bottom: rem(40px);
+}
+
+
+.product-img{
+  @include  detailSupplement();
+}
+
+
+.product-detail-bottom{
+  width: 100%;
+  height: rem(60px);
+}
+
 
 /** 标签 **/
 
@@ -96,7 +119,7 @@
   padding: 0 rem(4px);
   font-weight: bold;
 
-  line-height: 16px;
+  line-height: 15px;
 }
 
 .tip-info{
@@ -113,7 +136,6 @@
 //详情部分
 .detail-body{
 
-
   @include detailPadding;
 
   margin-bottom: rem(20px);
@@ -125,7 +147,6 @@
     font-size: rem(30px);
     color: #a1a1a1;
   }
-
 
 
   ul.list{
