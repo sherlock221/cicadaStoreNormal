@@ -61,12 +61,13 @@
 
 
         <section class="row row-center">
-            <div class="col">
+            <span class="col">
                 <div class="row row-center">
-                    <div class="point"></div>
-                    <div class="color-og ml10">{{post.credit}}</div>
+                    <i class="point block"></i>
+                    <span class="color-og ml10">{{post.credit}}</span>
                 </div>
-            </div>
+            </span>
+
             <button class="button button-energized ca-sm" ng-click="goPage()"  ng-disabled="notExchange">
                 {{isExchangeMsg}}
             </button>
