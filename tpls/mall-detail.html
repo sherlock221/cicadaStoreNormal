@@ -59,15 +59,13 @@
     </ion-content>
     <div class="detail-change clearfix" style="position: fixed; bottom: 0px; left : 0px;width: 100%;">
 
-
         <section class="row row-center">
-            <span class="col">
-                <div class="row row-center">
-                    <i class="point block"></i>
-                    <span class="color-og ml10">{{post.credit}}</span>
-                </div>
-            </span>
+                    <div class="ib" style="position: relative; top:1px;">
+                        <i class="point ib"></i>
+                        <span class="color-og ml10">{{post.credit}}</span>
+                    </div>
 
+            <div class="col"></div>
             <button class="button button-energized ca-sm" ng-click="goPage()"  ng-disabled="notExchange">
                 {{isExchangeMsg}}
             </button>
