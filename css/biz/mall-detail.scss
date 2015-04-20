@@ -28,18 +28,14 @@
 
 //详情头部
 .detail-header{
-
   @include detailPadding;
-
-  margin-top: rem(76px);
+  margin-top: rem(52px);
   margin-bottom: rem(32px);
-
   .tip-info{
     margin-top: rem(23px);
     //hack 中文大括号
     margin-left: -6px;
   }
-
   .time-gray{
     color: #a1a1a1;
     font-size: rem(30px);
@@ -52,7 +48,6 @@
   }
 
   span{
-
   }
 
 }
