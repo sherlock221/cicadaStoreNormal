@@ -93,7 +93,6 @@ var SelectPCA = angular.module("selectPCA",[])
 
     .controller("SelectCityCtrl",["$scope", "$stateParams","$rootScope","Util","selectPCASev",function ($scope, $stateParams,$rootScope,Util,selectPCASev) {
         console.log("city controller only one ...");
-
         var code = $stateParams.code;
         $scope.posts = [];
 

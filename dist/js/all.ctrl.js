@@ -575,7 +575,7 @@ PointMall.controller("MallCtrl",["$state", "$stateParams", "$location", "$scope"
 
     //计算banner宽高比
     var screenWidth = document.body.clientWidth;
-    var bannerScale = 750 / 340;
+    var bannerScale = 750 / 301;
     $scope.bannerHeight = screenWidth / bannerScale;
 
 

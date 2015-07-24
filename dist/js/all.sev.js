@@ -99,9 +99,7 @@ PointMall
                 });
 
                 return defer.promise;
-
             },
-
 
             //获得商品详情
             getProductDetail : function(productionId){
@@ -117,7 +115,6 @@ PointMall
                 }).error(function(error){
                     defer.reject(error);
                 },{timeout : 18000});
-
                 return defer.promise;
             },
 

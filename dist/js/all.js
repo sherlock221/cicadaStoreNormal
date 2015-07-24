@@ -575,7 +575,7 @@ PointMall.controller("MallCtrl",["$state", "$stateParams", "$location", "$scope"
 
     //计算banner宽高比
     var screenWidth = document.body.clientWidth;
-    var bannerScale = 750 / 340;
+    var bannerScale = 750 / 301;
     $scope.bannerHeight = screenWidth / bannerScale;
 
 
@@ -975,9 +975,7 @@ PointMall
                 });
 
                 return defer.promise;
-
             },
-
 
             //获得商品详情
             getProductDetail : function(productionId){
@@ -993,7 +991,6 @@ PointMall
                 }).error(function(error){
                     defer.reject(error);
                 },{timeout : 18000});
-
                 return defer.promise;
             },
 
@@ -1550,10 +1547,12 @@ PointMall.directive("imgLazy", function () {
                 else{
                     height = attr.height;
                 }
-               element.css({
-                   width: attr.width,
-                   height :height
-               });
+
+                element.find("img").css("height",height);
+                   element.css({
+                       width: attr.width,
+                       height :height
+                   });
             }
 
         }

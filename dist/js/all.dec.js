@@ -20,10 +20,12 @@ PointMall.directive("imgLazy", function () {
                 else{
                     height = attr.height;
                 }
-               element.css({
-                   width: attr.width,
-                   height :height
-               });
+
+                element.find("img").css("height",height);
+                   element.css({
+                       width: attr.width,
+                       height :height
+                   });
             }
 
         }
