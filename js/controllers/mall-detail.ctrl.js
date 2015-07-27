@@ -3,8 +3,9 @@ PointMall.controller("MallDetailCtrl",["$state","$stateParams","$scope","$rootSc
 
 
    //判断当前来自于url 还是 list
-    var proId =  Util.getParam("productId", $rootScope.currentUrlParams);
+    var proId =   Util.getParam("productId", $rootScope.currentUrlParams);
     console.log("detail : ",proId);
+
 
 
     //初始化
@@ -35,6 +36,9 @@ PointMall.controller("MallDetailCtrl",["$state","$stateParams","$scope","$rootSc
 
     //来自活动等查看详情
     if(proId){
+
+        $rootScope.whereFrom = "detail";
+
         console.log("productId 来自http");
         MallSev.getProductDetail(proId).then(function(res){
             if(res.rtnCode == "0000000"){
@@ -43,7 +47,6 @@ PointMall.controller("MallDetailCtrl",["$state","$stateParams","$scope","$rootSc
             else{
                 $rootScope.alert("提示",res.msg);
             }
-
         });
     }
     //来自list首页
@@ -52,6 +55,12 @@ PointMall.controller("MallDetailCtrl",["$state","$stateParams","$scope","$rootSc
         productInit(Util.getSgObj("product"));
     }
 
+
+    //进入加载
+    $scope.$on("$ionicView.beforeLeave", function () {
+          console.log("leave");
+        $rootScope.whereFrom = "";
+    });
 
     //去相应流程
     $scope.goPage = function(){
@@ -147,4 +156,8 @@ PointMall.controller("MallDetailCtrl",["$state","$stateParams","$scope","$rootSc
 
 
     }
+
+
+
+
 }]);

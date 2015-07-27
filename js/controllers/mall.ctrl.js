@@ -1,6 +1,7 @@
 PointMall.controller("MallCtrl",["$state", "$stateParams", "$location", "$scope", "$timeout", "$rootScope", "$ionicLoading","$ionicScrollDelegate","$ionicPopup", "Util", "MallSev",function ($state, $stateParams, $location, $scope, $timeout, $rootScope, $ionicLoading,$ionicScrollDelegate,$ionicPopup, Util, MallSev) {
 //        console.log($location.$$url);
 
+
     //当前url所带参数集合
     $rootScope.currentUrlParams;
 
@@ -135,8 +136,16 @@ PointMall.controller("MallCtrl",["$state", "$stateParams", "$location", "$scope"
     }
 
 
-    $rootScope.back = function(toggle){
-       Util.back();
+    $rootScope.back = function(backType){
+
+        if($rootScope.whereFrom  && $rootScope.whereFrom == "detail"){
+
+            $rootScope.goCicadaBack();
+        }
+        else{
+            Util.back();
+        }
+
     }
 
 }]);
