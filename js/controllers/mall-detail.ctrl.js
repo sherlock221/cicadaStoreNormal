@@ -1,23 +1,25 @@
 PointMall.controller("MallDetailCtrl",["$state","$stateParams","$scope","$rootScope","Util","AddressSev","MallSev","PROTOCOL",function($state,$stateParams,$scope,$rootScope,Util,AddressSev,MallSev,PROTOCOL){
 
-
+    var pd;
 
    //判断当前来自于url 还是 list
     var proId =   Util.getParam("productId", $rootScope.currentUrlParams);
     console.log("detail : ",proId);
 
 
-
     //初始化
     var productInit  = function(product){
         //获得当前选择的商品
         product.comment =  JSON.parse(product.comment);
+
+
         $scope.post = product;
+
+
 
         //兑换状态
         $scope.notExchange = true;
         $scope.isExchangeMsg = "不足兑换";
-
 
         //判断是否能兑换
         if( product.status == PROTOCOL.product.status.no_start){
@@ -32,6 +34,8 @@ PointMall.controller("MallDetailCtrl",["$state","$stateParams","$scope","$rootSc
             $scope.notExchange = false;
             $scope.isExchangeMsg = "兑换";
         }
+
+        pd = product;
     }
 
     //来自活动等查看详情
@@ -53,6 +57,7 @@ PointMall.controller("MallDetailCtrl",["$state","$stateParams","$scope","$rootSc
     else{
         console.log("productId 来自localstorage");
         productInit(Util.getSgObj("product"));
+
     }
 
 
@@ -65,8 +70,10 @@ PointMall.controller("MallDetailCtrl",["$state","$stateParams","$scope","$rootSc
     //去相应流程
     $scope.goPage = function(){
 
+
+
         //判断商品类型
-        switch (product.productionType){
+        switch (pd.productionType){
             //邮寄类
             case  1 :
                 checkAddress();
@@ -78,7 +85,7 @@ PointMall.controller("MallDetailCtrl",["$state","$stateParams","$scope","$rootSc
 
             //电子卷
             case  3 :
-                checkBook();
+                checkBook(pd);
                 break;
 
             //虚拟话费
@@ -135,7 +142,7 @@ PointMall.controller("MallDetailCtrl",["$state","$stateParams","$scope","$rootSc
     }
 
     //电子卷部分
-    var  checkBook = function(){
+    var  checkBook = function(product){
         var comment = "";
         //兑换电子卷
         $rootScope.loading(true);

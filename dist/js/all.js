@@ -335,42 +335,85 @@ PointMall.controller("MallExchangeCtrl",["$scope","$ionicScrollDelegate","$rootS
 
 }]);
 PointMall.controller("MallDetailCtrl",["$state","$stateParams","$scope","$rootScope","Util","AddressSev","MallSev","PROTOCOL",function($state,$stateParams,$scope,$rootScope,Util,AddressSev,MallSev,PROTOCOL){
-   //获得当前选择的商品
-   var  product = Util.getSgObj("product");
-        console.log(product.comment);
+
+    var pd;
+
+   //判断当前来自于url 还是 list
+    var proId =   Util.getParam("productId", $rootScope.currentUrlParams);
+    console.log("detail : ",proId);
+
+
+    //初始化
+    var productInit  = function(product){
+        //获得当前选择的商品
         product.comment =  JSON.parse(product.comment);
+
+
         $scope.post = product;
 
-     //兑换状态
-     $scope.notExchange = true;
-     $scope.isExchangeMsg = "不足兑换";
 
 
-    //判断是否能兑换
-    if( product.status == PROTOCOL.product.status.no_start){
+        //兑换状态
         $scope.notExchange = true;
-        $scope.isExchangeMsg = "未开始";
+        $scope.isExchangeMsg = "不足兑换";
+
+        //判断是否能兑换
+        if( product.status == PROTOCOL.product.status.no_start){
+            $scope.notExchange = true;
+            $scope.isExchangeMsg = "未开始";
+        }
+        else if(product.status == PROTOCOL.product.status.finish){
+            $scope.notExchange = true;
+            $scope.isExchangeMsg = "已结束";
+        }
+        else if($rootScope.user.credit   -  product.credit  >= 0){
+            $scope.notExchange = false;
+            $scope.isExchangeMsg = "兑换";
+        }
+
+        pd = product;
     }
-    else if(product.status == PROTOCOL.product.status.finish){
-        $scope.notExchange = true;
-        $scope.isExchangeMsg = "已结束";
+
+    //来自活动等查看详情
+    if(proId){
+
+        $rootScope.whereFrom = "detail";
+
+        console.log("productId 来自http");
+        MallSev.getProductDetail(proId).then(function(res){
+            if(res.rtnCode == "0000000"){
+                productInit(res.bizData);
+            }
+            else{
+                $rootScope.alert("提示",res.msg);
+            }
+        });
     }
-    else if($rootScope.user.credit   -  product.credit  >= 0){
-        $scope.notExchange = false;
-        $scope.isExchangeMsg = "兑换";
+    //来自list首页
+    else{
+        console.log("productId 来自localstorage");
+        productInit(Util.getSgObj("product"));
+
     }
+
+
+    //进入加载
+    $scope.$on("$ionicView.beforeLeave", function () {
+          console.log("leave");
+        $rootScope.whereFrom = "";
+    });
 
     //去相应流程
     $scope.goPage = function(){
 
+
+
         //判断商品类型
-        switch (product.productionType){
+        switch (pd.productionType){
             //邮寄类
             case  1 :
                 checkAddress();
                 break;
-
-
             //自取
             case  2 :
                 alert("自取");
@@ -378,7 +421,7 @@ PointMall.controller("MallDetailCtrl",["$state","$stateParams","$scope","$rootSc
 
             //电子卷
             case  3 :
-                checkBook();
+                checkBook(pd);
                 break;
 
             //虚拟话费
@@ -435,7 +478,7 @@ PointMall.controller("MallDetailCtrl",["$state","$stateParams","$scope","$rootSc
     }
 
     //电子卷部分
-    var  checkBook = function(){
+    var  checkBook = function(product){
         var comment = "";
         //兑换电子卷
         $rootScope.loading(true);
@@ -456,6 +499,10 @@ PointMall.controller("MallDetailCtrl",["$state","$stateParams","$scope","$rootSc
 
 
     }
+
+
+
+
 }]);
 PointMall.controller("MallListCtrl",["$state","$rootScope","$scope","Util","MallSev",function($state,$rootScope,$scope,Util,MallSev){
         $scope.posts = [];
@@ -497,55 +544,56 @@ PointMall.controller("MallCtrl",["$state", "$stateParams", "$location", "$scope"
 //        console.log($location.$$url);
 
 
+    //当前url所带参数集合
+    $rootScope.currentUrlParams;
+
+    $rootScope.getUrlParams = function(){
+        var paramsUrl;
+        if ($location.$$absUrl.indexOf("#") == -1) {
+            paramsUrl = $location.$$absUrl.substring($location.$$absUrl.indexOf("?") + 1, $location.$$absUrl.length);
+
+        }
+        else {
+            paramsUrl = $location.$$absUrl.substring($location.$$absUrl.indexOf("?") + 1, $location.$$absUrl.indexOf("#"));
+        }
+
+       return Util.parseParams(paramsUrl);
+    }
+
+
+
     //获得token
-    var paramsUrl;
-    if ($location.$$absUrl.indexOf("#") == -1) {
-        paramsUrl = $location.$$absUrl.substring($location.$$absUrl.indexOf("?") + 1, $location.$$absUrl.length);
+    var  paramList = $rootScope.currentUrlParams = $rootScope.getUrlParams();
 
-    }
-    else {
-        paramsUrl = $location.$$absUrl.substring($location.$$absUrl.indexOf("?") + 1, $location.$$absUrl.indexOf("#"));
+    var token = Util.getParam("token", paramList);
+    var productId = Util.getParam("productId", paramList);
+
+    //全局机型
+    $rootScope.MOBILE = {
+        version : Util.getParam("version", paramList) || "",
+        clientType : Util.getParam("clientType", paramList) || ""
     }
 
-    paramsUrl = Util.parseParams(paramsUrl);
-    var token = Util.getParam("token", paramsUrl);
     if (!token) {
         alert("token为空!");
         return;
     }
 
-
-   // alert(JSON.stringify(paramsUrl));
-
     $rootScope.isLoadingVal = false;
     $rootScope.token = token;
-    console.log($rootScope.token);
 
-
-
-
-
-    //全局机型
-    $rootScope.MOBILE = {
-        version : Util.getParam("version", paramsUrl) || "",
-        clientType : Util.getParam("clientType", paramsUrl) || ""
-    }
-
+    console.log("pId",productId);
+    console.log("token",token);
+    console.log("mobile",$rootScope.MOBILE );
 
     //是否ios
     $rootScope.IS_IOS = ionic.Platform.isIOS();
 
 
-    console.log($rootScope.MOBILE);
-
     $rootScope.user = {
         credit: ""
     }
 
-    if (!$rootScope.token) {
-        alert("token失效");
-
-    }
 
     //返回某个state
     $rootScope.backToView = function (stateName) {
@@ -597,13 +645,16 @@ PointMall.controller("MallCtrl",["$state", "$stateParams", "$location", "$scope"
 
     $rootScope.goCicadaVal = function () {
 
-        if($rootScope.MOBILE.clientType == "iOS"){
-            window.location="cicada://cicadaStore/gotoActiveValue";
-//            cicadaStore.gotoActiveValue();
-        }
-        else{
-            window.cicadaStore.gotoActiveValue();
-        }
+//        if($rootScope.MOBILE.clientType == "iOS"){
+//            window.location="cicada://cicadaStore/gotoActiveValue";
+////            cicadaStore.gotoActiveValue();
+//        }
+//        else{
+//            //window.cicadaStore.gotoActiveValue();
+//
+//        }
+        //新版接口
+        Util.goPage($rootScope.MOBILE.clientType,"myCredit");
 
     }
 
@@ -629,8 +680,16 @@ PointMall.controller("MallCtrl",["$state", "$stateParams", "$location", "$scope"
     }
 
 
-    $rootScope.back = function(toggle){
-       Util.back();
+    $rootScope.back = function(backType){
+
+        if($rootScope.whereFrom  && $rootScope.whereFrom == "detail"){
+
+            $rootScope.goCicadaBack();
+        }
+        else{
+            Util.back();
+        }
+
     }
 
 }]);
@@ -729,7 +788,6 @@ var SelectPCA = angular.module("selectPCA",[])
 
     .controller("SelectCityCtrl",["$scope", "$stateParams","$rootScope","Util","selectPCASev",function ($scope, $stateParams,$rootScope,Util,selectPCASev) {
         console.log("city controller only one ...");
-
         var code = $stateParams.code;
         $scope.posts = [];
 
@@ -1519,6 +1577,20 @@ PointMall
 
                 }
                 return "";
+            },
+
+             goPage :  function(type, viewName) {
+                var params = [ {
+                    key: "viewName",
+                    value: viewName
+                } ];
+                if (type == "iOS") {
+                    var params = Location.encodeParam(params);
+                    console.log("ios", "cicada://cicada/page/goPage" + params);
+                    window.location.href = "cicada://cicada/page/goPage" + params;
+                } else {
+                    window.cicada.goPage(viewName);
+                }
             }
         }
     }]);

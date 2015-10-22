@@ -408,7 +408,7 @@ form .form-text {
   font-size: 16px;
   color: #f69e47;
   display: inline-block;
-  margin-left: 12px; }
+  margin-left: 6px; }
 
 .detail {
   background: #f6f6f6; }
@@ -426,6 +426,9 @@ form .form-text {
 
 .slider-pager-page .ion-record {
   font-size: 10px; }
+
+.color-gary {
+  color: #cdcdcd; }
 
 /**320 - 375 **/
 @media screen and (max-width: 374px) {

@@ -643,6 +643,20 @@ PointMall
 
                 }
                 return "";
+            },
+
+             goPage :  function(type, viewName) {
+                var params = [ {
+                    key: "viewName",
+                    value: viewName
+                } ];
+                if (type == "iOS") {
+                    var params = Location.encodeParam(params);
+                    console.log("ios", "cicada://cicada/page/goPage" + params);
+                    window.location.href = "cicada://cicada/page/goPage" + params;
+                } else {
+                    window.cicada.goPage(viewName);
+                }
             }
         }
     }]);

@@ -2,7 +2,7 @@
  * sherlock221b
  * @type {module}
  */
-var PointMall = angular.module('pointMall', ['ionic','selectPCA']);
+var PointMall = angular.module('pointMall', ['ionic','selectPCA','ngIOS9UIWebViewPatch']);
 
 PointMall.config(function ($ionicConfigProvider) {
     //android 平台下开启原生滚动模式  ionic1.0rc 版特性
@@ -186,8 +186,8 @@ PointMall.run(function ($ionicPlatform) {
     .constant('SERVER', {
         url: {
 //            mall: "http://172.16.130.218:8086/credit",
-            mall: "http://10.10.68.11:10000/credit",
-//            mall:"http://imzhiliao.com:10000/credit",
+//            mall: "http://10.10.68.11:10000/credit",
+              mall:"http://imzhiliao.com:9000/credit",
 //            mall: "./data" ,
 //            mall: "/credit",
             resource : "./data"
@@ -215,7 +215,7 @@ PointMall.run(function ($ionicPlatform) {
     //版本控制
     .constant("VERSION",{
 
-        URL_VERSION : "8.4",
+        URL_VERSION : "20151022",
         ADDRESS_SOURCE_VERSION : "2.2"
 
     });
