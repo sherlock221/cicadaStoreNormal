@@ -12,6 +12,12 @@ PointMall.controller("AddressAddCtrl",["$scope","$rootScope","Util","AddressSev"
 //    $scope.isSubmit = false;
 
 
+    $scope.postProvince = [];
+    $scope.postCity = [];
+    $scope.postArea = [];
+
+
+
     //检测视图进入
     $scope.$on("$ionicView.beforeEnter",function(){
 
@@ -29,6 +35,28 @@ PointMall.controller("AddressAddCtrl",["$scope","$rootScope","Util","AddressSev"
         //滚动条顶部
         $rootScope.scrollTopByName("addressAddScroll");
     });
+
+
+    //AddressSev
+    //    .getProvince().then(function(res){
+    //
+    //        if(res.rtnCode == "0000000"){
+    //            $scope.postProvince = res.bizData;
+    //        }
+    //        else{
+    //            alert(res.msg);
+    //        }
+    //
+    //    });
+
+
+    $scope.changeProvice = function(){
+        console.log("provice..");
+    }
+
+    $scope.changeCity = function(){
+        console.log("city..");
+    }
 
 
 

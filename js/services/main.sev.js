@@ -2,6 +2,10 @@ PointMall
     .factory("MallSev",["$http","$q","SERVER",function($http,$q,SERVER){
         var  MallSev  =  {
 
+
+
+
+
             //获得商品列表
             getProduct : function(token,queryTime){
                 var defer = $q.defer();
@@ -124,6 +128,25 @@ PointMall
 
     .factory("AddressSev",["$http","$q","SERVER",function($http,$q,SERVER){
         var  AddressSev  =  {
+
+            getProvince : function(areaId){
+                var defer = $q.defer();
+                $http.post(SERVER.url.uc+"/schoolBoss/queryAreaByParentId",{
+                    "style" : "",
+                    "clientInfo" : {},
+                    "data" : {
+                        "areaId" : areaId
+                    }
+                }).success(function(res){
+                    defer.resolve(res);
+                }).error(function(error){
+                    defer.reject(error);
+                });
+
+                return defer.promise;
+            },
+
+
             //获得地址
             getAddress : function(token){
                 var defer = $q.defer();

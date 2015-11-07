@@ -72,10 +72,9 @@ var SelectPCA = angular.module("selectPCA",[])
             }
         }
 
-
         var selectProvice  =function(){
             //查询省
-            selectPCASev.getProvinceList().then(function(res){
+            selectPCASev.getProvinceList($rootScope.MOBILE.clientType).then(function(res){
                 console.log("走了一遍省");
                 $scope.posts = res;
             });
@@ -97,7 +96,7 @@ var SelectPCA = angular.module("selectPCA",[])
         $scope.posts = [];
 
         //查询省
-        selectPCASev.getCityByProvince(code).then(function(res){
+        selectPCASev.getCityByProvince( $rootScope.MOBILE.clientType,code).then(function(res){
             console.log("走了一遍市");
             $scope.posts = res;
         });
@@ -116,7 +115,7 @@ var SelectPCA = angular.module("selectPCA",[])
         var code = $stateParams.code;
 
         //查询省
-        selectPCASev.getAreaByCity(code).then(function(res){
+        selectPCASev.getAreaByCity($rootScope.MOBILE.clientType,code).then(function(res){
            console.log("走了一遍区");
             $scope.posts = res;
         });

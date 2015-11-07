@@ -176,7 +176,7 @@ PointMall.run(function ($ionicPlatform) {
         noBackdrop : true
     })
 
-//配置http 拦截器
+    //配置http 拦截器
     .config(function ($httpProvider,$compileProvider) {
         $httpProvider.interceptors.push("AjaxInterceptors");
         $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|javascript):/);
@@ -186,8 +186,9 @@ PointMall.run(function ($ionicPlatform) {
     .constant('SERVER', {
         url: {
 //            mall: "http://172.16.130.218:8086/credit",
-//            mall: "http://10.10.68.11:10000/credit",
-              mall:"http://imzhiliao.com:9000/credit",
+              //mall:"http://imzhiliao.com:9000/credit",
+              mall: "http://test.imzhiliao.com/credit",
+              uc : "http://test.imzhiliao.com/uc",
 //            mall: "./data" ,
 //            mall: "/credit",
             resource : "./data"
@@ -214,8 +215,7 @@ PointMall.run(function ($ionicPlatform) {
 
     //版本控制
     .constant("VERSION",{
-
-        URL_VERSION : "20151023",
+        URL_VERSION : "20151107",
         ADDRESS_SOURCE_VERSION : "2.2"
 
     });

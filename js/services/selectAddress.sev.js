@@ -64,7 +64,7 @@ SelectPCA
     }]);
 
 SelectPCA
-    .factory("selectPCASev", ["$q", "$rootScope","PCA_SQL","Util","VERSION","AddressDataSourceSev",function ($q, $rootScope,PCA_SQL,Util,VERSION,AddressDataSourceSev) {
+    .factory("selectPCASev", ["$q", "$rootScope","PCA_SQL","Util","VERSION","AddressDataSourceSev","AddressSev",function ($q, $rootScope,PCA_SQL,Util,VERSION,AddressDataSourceSev,AddressSev) {
 
         var selectPCADao = function () {  }
 
@@ -109,17 +109,90 @@ SelectPCA
          * 查询省
          * @type {selectPCADao}
          */
-        selectPCADao.prototype.getProvinceList = function(){
-           return  Util.selectSql(this.db,PCA_SQL.SELECT.ALL_PROVINCE);
+        selectPCADao.prototype.getProvinceList = function(os){
+
+            //ios 本地
+            if(os == "iOS"){
+                return  Util.selectSql(this.db,PCA_SQL.SELECT.ALL_PROVINCE);
+            }
+
+            var defer = $q.defer();
+            var _this = this;
+            AddressSev
+                .getProvince().then(function(res){
+                    if(res.rtnCode == "0000000"){
+                        defer.resolve(_this.convertData("province",res.bizData));
+                    }
+                    else{
+                        defer.reject(res.msg);
+                    }
+                });
+            return defer.promise;
         }
+
+
+        //数据接口转化
+        selectPCADao.prototype.convertData  = function(type,serverData){
+            var localDataList = [];
+
+            for(var i=0;i<serverData.length;i++){
+                var sData = serverData[i];
+
+                var obj = {};
+
+                if(type == "province"){
+                    obj = {
+                        name : sData.provinceName,
+                        code : sData.provinceId
+                    }
+                }
+                else if(type == "city"){
+                    obj = {
+                        name : sData.cityName,
+                        code : sData.cityId
+                    }
+                }
+                else{
+                    obj = {
+                        name : sData.districtName,
+                        code : sData.districtId
+                    }
+                }
+
+                localDataList.push(obj);
+            }
+
+            return localDataList;
+        }
+
+
 
         /**
          * 查询市
          * @param provinceCode
          * @returns {*|void|SQLResultSet}
          */
-        selectPCADao.prototype.getCityByProvince= function(provinceCode){
-            return Util.selectSql(this.db,PCA_SQL.SELECT.CITY,[provinceCode])
+        selectPCADao.prototype.getCityByProvince= function(os,provinceCode){
+
+            //ios 本地
+            if(os == "iOS"){
+                return Util.selectSql(this.db,PCA_SQL.SELECT.CITY,[provinceCode])
+            }
+
+            //其他设备网络
+            var defer = $q.defer();
+            var _this = this;
+            AddressSev
+                .getProvince(provinceCode).then(function(res){
+                    if(res.rtnCode == "0000000"){
+                        defer.resolve(_this.convertData("city",res.bizData));
+                    }
+                    else{
+                        defer.reject(res.msg);
+                    }
+                });
+            return defer.promise;
+
         }
 
         /**
@@ -127,8 +200,26 @@ SelectPCA
          * @param cityCode
          * @returns {*|void|SQLResultSet}
          */
-        selectPCADao.prototype.getAreaByCity= function(cityCode){
-            return Util.selectSql(this.db,PCA_SQL.SELECT.AREA,[cityCode])
+        selectPCADao.prototype.getAreaByCity= function(os,cityCode){
+
+            //ios 本地
+            if(os == "iOS"){
+                return Util.selectSql(this.db,PCA_SQL.SELECT.AREA,[cityCode])
+
+            }
+            //其他设备网络
+            var defer = $q.defer();
+            var _this = this;
+            AddressSev
+                .getProvince(cityCode).then(function(res){
+                    if(res.rtnCode == "0000000"){
+                        defer.resolve(_this.convertData("area",res.bizData));
+                    }
+                    else{
+                        defer.reject(res.msg);
+                    }
+                });
+            return defer.promise;
         }
 
 
